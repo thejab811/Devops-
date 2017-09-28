@@ -449,6 +449,56 @@ head(summary_3, 10)</code></pre>
 ##  9    DMK   144
 ## 10     SP   131</code></pre>
 </div>
+<div id="question-4" class="section level3">
+<h3>Question 4</h3>
+<p>Identify year wise which party has won (based upon total number constituencies won)</p>
+<pre class="r"><code>winning_rows = filter(parliament, Position==1)
+summary_4 = winning_rows %&gt;% group_by(YEAR, PARTY) %&gt;% summarise(TOTAL=n()) %&gt;% arrange(YEAR, -TOTAL) %&gt;% group_by(YEAR) %&gt;% summarise(first(PARTY))
+summary_4 </code></pre>
+<pre><code>## # A tibble: 17 x 2
+##     YEAR `first(PARTY)`
+##    &lt;int&gt;         &lt;fctr&gt;
+##  1  1951            INC
+##  2  1957            INC
+##  3  1962            INC
+##  4  1967            INC
+##  5  1971            INC
+##  6  1977            BLD
+##  7  1980         INC(I)
+##  8  1984            INC
+##  9  1985            INC
+## 10  1989            INC
+## 11  1991            INC
+## 12  1992            INC
+## 13  1996            BJP
+## 14  1998            BJP
+## 15  1999            BJP
+## 16  2004            INC
+## 17  2009            INC</code></pre>
+</div>
+<div id="question-5" class="section level3">
+<h3>Question 5</h3>
+<p>Identify year wise percentage of winning for female candidates?</p>
+<pre class="r"><code>summary_5 = parliament %&gt;% filter(SEX=='F') %&gt;% group_by(YEAR) %&gt;% summarise(total=n(), won = length(which(Position==1))) %&gt;% mutate(perc_win=won/total*100) %&gt;% arrange(YEAR)
+summary_5</code></pre>
+<pre><code>## # A tibble: 14 x 4
+##     YEAR total   won  perc_win
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;
+##  1  1962    66    31 46.969697
+##  2  1967    67    29 43.283582
+##  3  1977    70    19 27.142857
+##  4  1980   143    28 19.580420
+##  5  1984   162    42 25.925926
+##  6  1985     9     1 11.111111
+##  7  1989   198    29 14.646465
+##  8  1991   326    37 11.349693
+##  9  1992     4     2 50.000000
+## 10  1996   599    40  6.677796
+## 11  1998   274    43 15.693431
+## 12  1999   284    49 17.253521
+## 13  2004   355    45 12.676056
+## 14  2009   556    58 10.431655</code></pre>
+</div>
 
 
 
