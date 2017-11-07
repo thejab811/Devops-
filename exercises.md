@@ -12,7 +12,7 @@
 ### ODI Batting
 - Create a new column by binning the Runs column using the following ranges and plot the frequency count of ranges
   - 0-25, 26-50, 51-75, 76-100, 100+
-- Consider the top ten players by total runs and compute and visualize the number of centuries across years and number of ducks across years. 
+- Consider the top ten players by total runs and compute and visualize the number of centuries across years (use facet_grid or facet_wrap)
 
 ### Tweets (#narendramodi)
 
